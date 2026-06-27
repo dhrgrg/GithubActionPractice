@@ -1,0 +1,24 @@
+name: artfact-test
+on:
+  workflow_dispatch:
+
+jobs:
+  create-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: import data from github repo
+        uses: actions/checkout@4.0
+
+      - name: create more artifacts files
+        run: |
+          mkdir artifactDir
+          echo "adding text to artfact-file1.md on date: $date" > artifactDir/artfact-file1.md
+      
+      - name: upload artifacts
+        uses: actions/upload-artifact@4.0
+        with:
+          name: created-artifacts
+          path: /
+
+
+    
