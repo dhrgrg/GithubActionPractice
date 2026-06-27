@@ -12,14 +12,14 @@ jobs:
       - name: create more artifacts files
         run: |
           mkdir artifactDir
-          echo "adding text to artfact-file1.md on date: $date" > artifactDir/artfact-file1.md
+          echo "adding text to artfact-file1.md on date: $(date)" > artifactDir/artfact-file1.md
           pwd
       
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: created-artifacts
-          path: artifactDir/
+          path: artifactDir
 
 
     
