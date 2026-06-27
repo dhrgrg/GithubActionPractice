@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu@latest
+    runs-on: ubuntu-latest
     steps:
       - name: create-artifacts
         run: |
@@ -18,7 +18,7 @@ jobs:
           path: af1/
   
   deploy:
-    runs-on: ubuntu@latest
+    runs-on: ubuntu-latest
     needs: build # make mistake here, i had to use needs: build instead of needs: build-job => this is because the job name is build, so we need to use the job name instead of the upload name
     steps:
       - name: download-artifacts
