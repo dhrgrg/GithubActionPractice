@@ -14,6 +14,7 @@ jobs:
           mkdir artifactDir
           echo "adding text to artfact-file1.md on date: $(date)" > artifactDir/artfact-file1.md
           pwd
+          ls -la
       
       - name: upload artifacts
         uses: actions/upload-artifact@v7
