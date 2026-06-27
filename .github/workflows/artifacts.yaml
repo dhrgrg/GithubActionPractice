@@ -1,4 +1,4 @@
-name: artfact-test
+name: artifact-test
 on:
   workflow_dispatch:
 
@@ -7,20 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: import data from github repo
-        uses: actions/checkout@v7
+        uses: actions/checkout@v7  #upload the files from the repo to the runner
 
       - name: create more artifacts files
         run: |
           mkdir artifactDir
-          echo "adding text to artfact-file1.md on date: $(date)" > artifactDir/artfact-file1.md
+          echo "adding text to artfact-file1.md on date: $(date)" > artifactDir/artfact-file1.md  
           pwd
           ls -la
-      
+      # i had made mistake with $(date) in the above line, it was not working, so i had to use $(date) instead of $(date)
       - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: created-artifacts
-          path: artifactDir
+          path: artifactDir/
+          # made a mistake above, i had to use path: artifactDir/ instead of path: /artifactDir => this is because the artifactDir is created in the current working directory, so we need to use relative path instead of absolute path
 
 
     

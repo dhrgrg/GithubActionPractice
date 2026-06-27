@@ -1,0 +1,37 @@
+name: artifacts-upload&download
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu@latest
+    steps:
+      - name: create-artifacts
+        run: |
+          mkdir af1
+          echo "cfreating artifact in folder af1" > af1/artifact-file.txt
+
+      - name: upload-artifacts
+        uses: actions/upload-artifacts@v7
+        with: 
+          name: build-job-artifacts
+          path: af1/
+  
+  deploy:
+    runs-on: ubuntu@latest
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifacts@v7
+        with:
+          name: build-job-artifacts # Must match the upload name exactly
+          path: af1/ # Where to extract it        
+
+      - name: modifying-artifacts
+        run: |
+          echo "modify artifact in folder af1" >> af1/artifact-file.txt
+
+      - name: upload-artifacts-from-deplyjob
+        uses: actions/upload-artifacts@v7
+        with: 
+          name: deploy-job-artifacts
+          path: af1/          
