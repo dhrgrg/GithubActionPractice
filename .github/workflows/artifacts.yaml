@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: import data from github repo
-        uses: actions/checkout@4.0
+        uses: actions/checkout@v7
 
       - name: create more artifacts files
         run: |
@@ -15,7 +15,7 @@ jobs:
           echo "adding text to artfact-file1.md on date: $date" > artifactDir/artfact-file1.md
       
       - name: upload artifacts
-        uses: actions/upload-artifact@4.0
+        uses: actions/upload-artifact@v7
         with:
           name: created-artifacts
           path: /
